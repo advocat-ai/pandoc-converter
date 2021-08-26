@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package pandoc;
+
+option go_package = "github.com/advocat-ai/pandoc-converter/api";
+option csharp_namespace = "Pandoc.Api";
+option java_package = "pandoc.api";
+
+// The Converter Service converts documents from one format to another.
+service Converter {
+
+  // Converts documents from one format to another.
+  rpc Convert(ConvertRequest) returns (ConvertResponse);
+
+}
+
+// Request for a Convert call.
+message ConvertRequest {
+
+  // The input type
+  Format from_format = 1;
+
+  // The requested output type
+  Format to_format = 2;
+
+  // The input content
+  bytes content = 3;
+
+}
+
+// Response to a Convert call.
+message ConvertResponse {
+
+  // The output type
+  Format to_format = 1;
+
+  // The output content
+  bytes content = 2;
+  
+}
+
+// Supported Formats
+enum Format {
+  UNSPECIFIED_FORMAT = 0;
+  ASCIIDOC = 1;
+  BEAMER = 2;
+  BIBTEX = 3;
+  BIBLATEX = 4;
+  COMMONMARK = 5;
+  COMMONMARK_X = 6;
+  CONTEXT = 7;
+  CSLJSON = 8;
+  DOCBOOK_4 = 9;
+  DOCBOOK_5 = 10;
+  DOCX = 11;
+  DOKUWIKI = 12;
+  EPUB_3 = 13;
+  EPUB_2 = 14;
+  FB2 = 15;
+  GFM = 16;
+  HADDOCK = 17;
+  HTML_5 = 18;
+  HTML_4 = 19;
+  ICML = 20;
+  IPYNB = 21;
+  JATS_ARCHIVING = 22;
+  JATS_ARTICLE_AUTHORING = 23;
+  JATS_PUBLISHING = 24;
+  JIRA = 25;
+  JSON = 26;
+  LATEX = 27;
+  MAN = 28;
+  MARKDOWN = 29;
+  MARKDOWN_MMD = 30;
+  MARKDOWN_PHP_EXTRA = 31;
+  MARKDOWN_STRICT = 32;
+  MEDIAWIKI = 33;
+  MS = 34;
+  MUSE = 35;
+  NATIVE = 36;
+  ODT = 37;
+  OPML = 38;
+  OPENDOCUMENT = 39;
+  ORG = 40;
+  PDF = 41;
+  PLAIN = 42;
+  PPTX = 43;
+  RST = 44;
+  RTF = 45;
+  TEXINFO = 46;
+  TEXTILE = 47;
+  SLIDEOUS = 48;
+  SLIDY = 49;
+  DZSLIDES = 50;
+  REVEALJS = 51;
+  S5 = 52;
+  TEI = 53;
+  XWIKI = 54;
+  ZIMWIKI = 55;
+}
+
